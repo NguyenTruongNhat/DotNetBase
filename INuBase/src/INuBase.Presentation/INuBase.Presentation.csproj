@@ -10,4 +10,10 @@
     <PackageReference Include="Carter" Version="8.2.1" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\INuBase.Application\INuBase.Application.csproj" />
+    <ProjectReference Include="..\INuBase.Contract\INuBase.Contract.csproj" />
+    <ProjectReference Include="..\INuBase.Infrastructure\INuBase.Infrastructure.csproj" />
+  </ItemGroup>
+
 </Project>

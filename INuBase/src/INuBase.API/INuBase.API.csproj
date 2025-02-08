@@ -18,4 +18,12 @@
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.6.2" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\INuBase.Application\INuBase.Application.csproj" />
+    <ProjectReference Include="..\INuBase.Contract\INuBase.Contract.csproj" />
+    <ProjectReference Include="..\INuBase.Infrastructure\INuBase.Infrastructure.csproj" />
+    <ProjectReference Include="..\INuBase.Persistence\INuBase.Persistence.csproj" />
+    <ProjectReference Include="..\INuBase.Presentation\INuBase.Presentation.csproj" />
+  </ItemGroup>
+
 </Project>

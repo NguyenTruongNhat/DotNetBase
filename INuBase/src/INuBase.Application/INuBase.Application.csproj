@@ -12,4 +12,10 @@
     <PackageReference Include="MediatR" Version="12.4.1" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\INuBase.Contract\INuBase.Contract.csproj" />
+    <ProjectReference Include="..\INuBase.Domain\INuBase.Domain.csproj" />
+    <ProjectReference Include="..\INuBase.Persistence\INuBase.Persistence.csproj" />
+  </ItemGroup>
+
 </Project>
