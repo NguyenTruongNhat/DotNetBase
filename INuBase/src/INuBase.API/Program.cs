@@ -1,11 +1,17 @@
+using INuBase.Application.DependencyInjection.Extensions;
 using INuBase.Persistence.DependencyInjection.Extensions;
 using INuBase.Persistence.DependencyInjection.Options;
-
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
-builder.Services.AddControllers();
+
+
+//builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(INuBase.Application.AssemblyReference.Assembly));
+builder.Services.AddConfigureMediatR();
+
+builder.Services.AddControllers()
+                .AddApplicationPart(INuBase.Presentation.AssemblyReference.Assembly);
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
