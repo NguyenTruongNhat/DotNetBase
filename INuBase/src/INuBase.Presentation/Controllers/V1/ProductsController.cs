@@ -1,4 +1,5 @@
-﻿using INuBase.Contract.Abstractions.Shared;
+﻿using Asp.Versioning;
+using INuBase.Contract.Abstractions.Shared;
 using INuBase.Contract.Services.V1.Product;
 using INuBase.Presentation.Abstractions;
 using MediatR;
@@ -6,6 +7,8 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace INuBase.Presentation.Controllers.V1;
+
+[ApiVersion(1)]
 public class ProductsController : ApiController
 {
     public ProductsController(ISender sender) : base(sender)

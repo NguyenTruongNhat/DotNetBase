@@ -1,6 +1,8 @@
+using INuBase.API.DependencyInjection.Extensions;
 using INuBase.Application.DependencyInjection.Extensions;
 using INuBase.Persistence.DependencyInjection.Extensions;
 using INuBase.Persistence.DependencyInjection.Options;
+using MicroElements.Swashbuckle.FluentValidation.AspNetCore;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -24,13 +26,26 @@ builder.Services.AddRepositoryBaseConfiguration();
 
 
 
+builder.Services
+        .AddSwaggerGenNewtonsoftSupport()
+        .AddFluentValidationRulesToSwagger()
+        .AddEndpointsApiExplorer()
+        .AddSwagger();
+
+builder.Services
+    .AddApiVersioning(options => options.ReportApiVersions = true)
+    .AddApiExplorer(options =>
+    {
+        options.GroupNameFormat = "'v'VVV";
+        options.SubstituteApiVersionInUrl = true;
+    });
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
-    app.UseSwagger();
-    app.UseSwaggerUI();
+    app.ConfigureSwagger();
 }
 
 app.UseHttpsRedirection();
