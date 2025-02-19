@@ -3,28 +3,39 @@ using INuBase.Application.DependencyInjection.Extensions;
 using INuBase.Persistence.DependencyInjection.Extensions;
 using INuBase.Persistence.DependencyInjection.Options;
 using MicroElements.Swashbuckle.FluentValidation.AspNetCore;
+using Serilog;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
+Log.Logger = new LoggerConfiguration().ReadFrom
+    .Configuration(builder.Configuration)
+    .CreateLogger();
 
+builder.Logging
+    .ClearProviders()
+    .AddSerilog();
 
-//builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(INuBase.Application.AssemblyReference.Assembly));
+builder.Host.UseSerilog();
+
 builder.Services.AddConfigureMediatR();
+
 
 builder.Services.AddControllers()
                 .AddApplicationPart(INuBase.Presentation.AssemblyReference.Assembly);
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
 
+//builder.Services.AddTransient<ExceptionHandlingMiddleware>();
 
 // Configure Options and SQL
 builder.Services.ConfigureSqlServerRetryOptions(builder.Configuration.GetSection(nameof(SqlServerRetryOptions)));
 builder.Services.AddSqlConfiguration();
 builder.Services.AddRepositoryBaseConfiguration();
+//builder.Services.AddConfigureAutoMapper();
 
+//builder.Services.AddCarter();
 
+// Configure Dapper
+//builder.Services.AddInfrastructureDapper();
 
 builder.Services
         .AddSwaggerGenNewtonsoftSupport()
@@ -41,6 +52,16 @@ builder.Services
     });
 
 var app = builder.Build();
+
+//app.UseMiddleware<ExceptionHandlingMiddleware>();
+
+// Add API Endpoint
+//app.NewVersionedApi("products-minimal-show-on-swagger").MapProductApiV1().MapProductApiV2();
+
+//// Add API Endpoint with carter module
+//app.MapCarter();
+
+
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
