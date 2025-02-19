@@ -1,5 +1,6 @@
 using INuBase.API.DependencyInjection.Extensions;
 using INuBase.Application.DependencyInjection.Extensions;
+using INuBase.Infrastructure.Dapper.DependencyInjection.Extensions;
 using INuBase.Persistence.DependencyInjection.Extensions;
 using INuBase.Persistence.DependencyInjection.Options;
 using MicroElements.Swashbuckle.FluentValidation.AspNetCore;
@@ -35,7 +36,7 @@ builder.Services.AddRepositoryBaseConfiguration();
 //builder.Services.AddCarter();
 
 // Configure Dapper
-//builder.Services.AddInfrastructureDapper();
+builder.Services.AddInfrastructureDapper();
 
 builder.Services
         .AddSwaggerGenNewtonsoftSupport()

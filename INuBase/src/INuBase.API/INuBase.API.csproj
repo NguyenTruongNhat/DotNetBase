@@ -25,6 +25,7 @@
   <ItemGroup>
     <ProjectReference Include="..\INuBase.Application\INuBase.Application.csproj" />
     <ProjectReference Include="..\INuBase.Contract\INuBase.Contract.csproj" />
+    <ProjectReference Include="..\INuBase.Infrastructure.Dapper\INuBase.Infrastructure.Dapper\INuBase.Infrastructure.Dapper.csproj" />
     <ProjectReference Include="..\INuBase.Infrastructure\INuBase.Infrastructure.csproj" />
     <ProjectReference Include="..\INuBase.Persistence\INuBase.Persistence.csproj" />
     <ProjectReference Include="..\INuBase.Presentation\INuBase.Presentation.csproj" />

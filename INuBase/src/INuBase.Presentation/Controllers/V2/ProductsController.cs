@@ -1,5 +1,5 @@
 ﻿using Asp.Versioning;
-using INuBase.Contract.Services.V1.Product;
+using INuBase.Contract.Services.V2.Product;
 using INuBase.Presentation.Abstractions;
 using MediatR;
 using Microsoft.AspNetCore.Http;

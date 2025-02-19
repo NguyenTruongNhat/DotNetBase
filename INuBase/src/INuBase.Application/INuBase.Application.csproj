@@ -18,8 +18,4 @@
     <ProjectReference Include="..\INuBase.Persistence\INuBase.Persistence.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="UserCases\V2\" />
-  </ItemGroup>
-
 </Project>
