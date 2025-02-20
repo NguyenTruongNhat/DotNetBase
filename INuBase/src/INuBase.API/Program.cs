@@ -1,8 +1,11 @@
+using Carter;
 using INuBase.API.DependencyInjection.Extensions;
+using INuBase.API.Middleware;
 using INuBase.Application.DependencyInjection.Extensions;
 using INuBase.Infrastructure.Dapper.DependencyInjection.Extensions;
 using INuBase.Persistence.DependencyInjection.Extensions;
 using INuBase.Persistence.DependencyInjection.Options;
+using INuBase.Presentation.APIs.Products;
 using MicroElements.Swashbuckle.FluentValidation.AspNetCore;
 using Serilog;
 var builder = WebApplication.CreateBuilder(args);
@@ -25,7 +28,7 @@ builder.Services.AddConfigureMediatR();
 builder.Services.AddControllers()
                 .AddApplicationPart(INuBase.Presentation.AssemblyReference.Assembly);
 
-//builder.Services.AddTransient<ExceptionHandlingMiddleware>();
+builder.Services.AddTransient<ExceptionHandlingMiddleware>();
 
 // Configure Options and SQL
 builder.Services.ConfigureSqlServerRetryOptions(builder.Configuration.GetSection(nameof(SqlServerRetryOptions)));
@@ -33,7 +36,7 @@ builder.Services.AddSqlConfiguration();
 builder.Services.AddRepositoryBaseConfiguration();
 //builder.Services.AddConfigureAutoMapper();
 
-//builder.Services.AddCarter();
+builder.Services.AddCarter();
 
 // Configure Dapper
 builder.Services.AddInfrastructureDapper();
@@ -54,13 +57,13 @@ builder.Services
 
 var app = builder.Build();
 
-//app.UseMiddleware<ExceptionHandlingMiddleware>();
+app.UseMiddleware<ExceptionHandlingMiddleware>();
 
 // Add API Endpoint
-//app.NewVersionedApi("products-minimal-show-on-swagger").MapProductApiV1().MapProductApiV2();
+app.NewVersionedApi("products-minimal-show-on-swagger").MapProductApiV1().MapProductApiV2();
 
 //// Add API Endpoint with carter module
-//app.MapCarter();
+app.MapCarter();
 
 
 

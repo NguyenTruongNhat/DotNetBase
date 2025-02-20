@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace INuBase.Presentation.Abstractions;
 
 [ApiController]
-[Route("api/[controller]")]
+[Route("api/v{version:apiVersion}/[controller]")]
 public abstract class ApiController : ControllerBase
 {
     protected readonly ISender Sender;
